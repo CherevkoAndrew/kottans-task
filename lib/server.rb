@@ -68,8 +68,14 @@ __END__
 	<%= link %>
 
 @@ message_page
-	<span id="message_view"><%= message %></span>
-	<form onsubmit="decrypt();return false">
-		<input id="secret" type="text" name="secret"></input>
-		<input id="submit" value="Decode" type="submit"></input>
-	</form>
+	<div class="center">
+		<div id="message_block">
+			<h2>Your message</h2>
+			<span id="pwd_info">add your password to decode it</span>
+			<p id="message_view"><%= message %></p>
+		</div>
+		<form onsubmit="decrypt();return false">
+			<input id="secret" type="text" name="secret"></input>
+			<input value="Decode" type="submit"></input>
+		</form>
+	</div>

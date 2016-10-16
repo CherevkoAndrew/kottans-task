@@ -42,3 +42,15 @@ h3{
 	color: red;
 	font-size: 16px;
 }
+
+.center{
+	width: 960px;
+	margin: 0 auto;
+}
+
+#message_view {
+	margin: 20px;
+}
+#secret {
+	float: left;
+}
