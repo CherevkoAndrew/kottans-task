@@ -1,3 +1,3 @@
-source 'https://rubygems.org' do
- 
-end
+source 'https://rubygems.org'
+
+gem 'sinatra'
