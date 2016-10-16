@@ -9,7 +9,8 @@ get '/' do
 end
 
 get '/:path' do
-	erb :message_page,:locals => { :message => messages.get(params['path']).read}
+	halt erb :message_page,:locals => { :message => messages.get(params['path']).read} if messages.get(params['path'])
+	redirect to('/')
 end
 
 post '/' do
@@ -21,7 +22,7 @@ post '/' do
 	time = ss + mm*60 + hh*60*60
 	time = nil if time == 0
 
-	key = messages.push Message.new(message_string, {:limit => limit, :life_time => time})
+	key = messages.push Message.new(message_string, {:number_of_visits => limit, :life_time => time})
 
 	erb :safe_link, :locals => { :link => "<a href='#{request.base_url+'/'+key}'>#{request.base_url+'/'+key}</a>"}
 end
@@ -79,3 +80,6 @@ __END__
 			<input value="Decode" type="submit"></input>
 		</form>
 	</div>
+
+@@ oops
+	<h2>Your message not found</h2>
