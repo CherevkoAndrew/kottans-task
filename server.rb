@@ -35,7 +35,7 @@ __END__
 		<title>test task</title>
 		<meta charset="utf-8" />
 		<link rel="stylesheet" href="input.css">
-		<script type="text/javascript" src="http://cryptojs.altervista.org/api/functions_cryptography.js"></script>
+		<script type="text/javascript" src="crypto.js"></script>
 		<script src="script.js"></script>
 	</head>
 	<body><%= yield %></body>
