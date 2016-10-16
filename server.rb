@@ -1,5 +1,5 @@
 require 'sinatra'
-require_relative 'storage'
+require_relative 'lib/storage'
 set :server, 'thin'
 
 messages = Storage.new
