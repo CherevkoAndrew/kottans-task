@@ -34,9 +34,9 @@ __END__
 	<head>
 		<title>test task</title>
 		<meta charset="utf-8" />
-		<link rel="stylesheet" href="https://raw.githubusercontent.com/CherevkoAndrew/kottans-task/master/lib/public/input.css">
+		<link rel="stylesheet" href="input.css">
 		<script type="text/javascript" src="http://cryptojs.altervista.org/api/functions_cryptography.js"></script>
-		<script src="https://raw.githubusercontent.com/CherevkoAndrew/kottans-task/master/lib/public/script.js"></script>
+		<script src="script.js"></script>
 	</head>
 	<body><%= yield %></body>
 </html>
