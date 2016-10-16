@@ -9,7 +9,7 @@ get '/' do
 end
 
 get '/:path' do
-	messages.get(params['path']).read
+	erb :message_page,:locals => { :message => messages.get(params['path']).read}
 end
 
 post '/' do
@@ -66,3 +66,10 @@ __END__
 @@ safe_link
 	<h2>Link to your message</h2>
 	<%= link %>
+
+@@ message_page
+	<span id="message_view"><%= message %></span>
+	<form onsubmit="decrypt();return false">
+		<input id="secret" type="text" name="secret"></input>
+		<input id="submit" value="Decode" type="submit"></input>
+	</form>
