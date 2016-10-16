@@ -1,16 +1,29 @@
 require 'sinatra'
+require_relative 'storage'
 set :server, 'thin'
+
+messages = Storage.new
 
 get '/' do
 	halt erb(:write)
 end
 
-get '/message' do
-	halt 'ok'
+get '/:path' do
+	messages.get(params['path']).read
 end
 
 post '/' do
-	halt 'ok'
+	hh = params['hh'].to_i#hours
+	mm = params['mm'].to_i#minutes
+	ss = params['ss'].to_i#seconds
+	message_string = params['message']
+	limit = params['limit'].to_i if params['limit'] != ''#views limit
+	time = ss + mm*60 + hh*60*60
+	time = nil if time == 0
+
+	key = messages.push Message.new(message_string, {:limit => limit, :life_time => time})
+
+	erb :safe_link, :locals => { :link => "<a href='#{request.base_url+'/'+key}'>#{request.base_url+'/'+key}</a>"}
 end
 
 __END__
@@ -28,7 +41,7 @@ __END__
 </html>
 
 @@ write
-	<form onsubmit="s(this);return false;">
+	<form onsubmit="s(this);return false;" method="post">
 		<h2>Write a message</h2>
 		<textarea id="message" name="message"></textarea>
 		<div id='inputs'>
@@ -50,3 +63,6 @@ __END__
 		</div>
 		<span id="info"></span>
 	</form>
+@@ safe_link
+	<h2>Link to your message</h2>
+	<%= link %>
