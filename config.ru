@@ -1,8 +1,3 @@
-require 'rubygems'
-require 'bundler'
-
-Bundler.require
-
-require './my_sinatra_app'
-run MySinatraApp
+require_relative './server'
+run Sinatra::Application
 
